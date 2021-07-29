@@ -1,0 +1,48 @@
+syntax = "proto3";
+package proto.v1.fizzbuzz;
+option go_package = "proto/v1/fizzbuzz";
+
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service FizzBuzzService {
+  rpc Get(FizzBuzzServiceGetRequest) returns (FizzBuzzServiceGetResponse) {
+    option (google.api.http) = {
+      post: "/fizzbuzz"
+      body: "*"
+    };
+  }
+  rpc Stats(FizzBuzzServiceStatsRequest) returns (FizzBuzzServiceStatsResponse) {
+    option (google.api.http) = {
+      get: "/fizzbuzz"
+    };
+  }
+}
+
+
+message FizzBuzzServiceGetRequest {
+  uint64 int1 = 1;
+  uint64 int2 = 2;
+  uint64 limit = 3;
+  string str1 = 4;
+  string str2 = 5;
+}
+
+message FizzBuzzServiceGetResponse {
+  repeated string items = 6 ;
+}
+
+message FizzBuzzServiceStatsResponse {
+  uint64 int1 = 1;
+  uint64 int2 = 2;
+  uint64 limit = 3;
+  string str1 = 4;
+  string str2 = 5 ;
+  uint64 requests = 8;
+}
+
+// Choosing between google.protobuf.Empty or an message without fields,
+//The empty message has the advantage of being easier to extend without breakage in the future.
+message FizzBuzzServiceStatsRequest {
+}
