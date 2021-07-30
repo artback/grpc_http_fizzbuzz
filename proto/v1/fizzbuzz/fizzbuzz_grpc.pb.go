@@ -18,6 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FizzBuzzServiceClient interface {
+	// I want a stream here to support better
 	Get(ctx context.Context, in *FizzBuzzServiceGetRequest, opts ...grpc.CallOption) (*FizzBuzzServiceGetResponse, error)
 	Stats(ctx context.Context, in *FizzBuzzServiceStatsRequest, opts ...grpc.CallOption) (*FizzBuzzServiceStatsResponse, error)
 }
@@ -52,6 +53,7 @@ func (c *fizzBuzzServiceClient) Stats(ctx context.Context, in *FizzBuzzServiceSt
 // All implementations must embed UnimplementedFizzBuzzServiceServer
 // for forward compatibility
 type FizzBuzzServiceServer interface {
+	// I want a stream here to support better
 	Get(context.Context, *FizzBuzzServiceGetRequest) (*FizzBuzzServiceGetResponse, error)
 	Stats(context.Context, *FizzBuzzServiceStatsRequest) (*FizzBuzzServiceStatsResponse, error)
 	mustEmbedUnimplementedFizzBuzzServiceServer()

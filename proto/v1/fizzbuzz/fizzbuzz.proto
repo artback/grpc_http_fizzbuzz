@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 service FizzBuzzService {
+  // I want a stream here to support better
   rpc Get(FizzBuzzServiceGetRequest) returns (FizzBuzzServiceGetResponse) {
     option (google.api.http) = {
       post: "/fizzbuzz"
@@ -15,7 +16,7 @@ service FizzBuzzService {
   }
   rpc Stats(FizzBuzzServiceStatsRequest) returns (FizzBuzzServiceStatsResponse) {
     option (google.api.http) = {
-      get: "/fizzbuzz"
+      get: "/stats"
     };
   }
 }
@@ -29,8 +30,10 @@ message FizzBuzzServiceGetRequest {
   string str2 = 5;
 }
 
+// I would have preferred for the rest api to return an json array instead of an
+// object with a property 'words' with the json array
 message FizzBuzzServiceGetResponse {
-  repeated string items = 6 ;
+  repeated string words = 6;
 }
 
 message FizzBuzzServiceStatsResponse {

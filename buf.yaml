@@ -1,4 +1,4 @@
 version: v1beta1
-name: buf.build/artback/fizzbuzz
+name: buf.build/artback/fizzbuzzsrv
 deps:
   - buf.build/beta/googleapis

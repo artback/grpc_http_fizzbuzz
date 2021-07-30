@@ -224,7 +224,7 @@ func RegisterFizzBuzzServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 var (
 	pattern_FizzBuzzService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"fizzbuzz"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_FizzBuzzService_Stats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"fizzbuzz"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_FizzBuzzService_Stats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"stats"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
