@@ -14,21 +14,21 @@ type Service struct {
 }
 
 func (s Service) Get(ctx context.Context, req *fizzbuzz.FizzBuzzServiceGetRequest) (*fizzbuzz.FizzBuzzServiceGetResponse, error) {
-	cCtx, cancel := context.WithCancel(ctx)
+	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 	if err := req.Validate(); err != nil {
 		return nil, fmt.Errorf("Service.Get Validation %w", err)
 	}
 
 	buzzValues := fizz.BuzzValues{Int1: req.Int1, Int2: req.Int2, Limit: req.Limit, Str1: req.Str1, Str2: req.Str2}
-	s.UpdateStats(cCtx, buzzValues)
+	go s.UpdateStats(ctx, buzzValues)
 	return &fizzbuzz.FizzBuzzServiceGetResponse{Words: fizz.RunFizz(buzzValues)}, nil
 }
 
 func (s Service) Stats(ctx context.Context, _ *fizzbuzz.FizzBuzzServiceStatsRequest) (*fizzbuzz.FizzBuzzServiceStatsResponse, error) {
-	cCtx, cancel := context.WithCancel(ctx)
+	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
-	most, frequency, err := s.GetMostUsed(cCtx)
+	most, frequency, err := s.GetMostUsed(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("service.Stats: %w", err)
 	}

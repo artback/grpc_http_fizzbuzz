@@ -17,7 +17,6 @@ func TestService_Get(t *testing.T) {
 		sendError error
 	}
 	type expect struct {
-		arg0  interface{}
 		arg1  interface{}
 		times int
 	}
@@ -34,10 +33,6 @@ func TestService_Get(t *testing.T) {
 				request: &fizzbuzz.FizzBuzzServiceGetRequest{Int1: 2, Int2: 3, Limit: 5, Str1: "fizz", Str2: "buzz"},
 			},
 			expect: expect{
-				arg0: func() context.Context {
-					withCancel, _ := context.WithCancel(context.Background())
-					return withCancel
-				}(),
 				arg1: fizz.BuzzValues{
 					Int1: 2, Int2: 3, Limit: 5, Str1: "fizz", Str2: "buzz",
 				},
@@ -64,7 +59,7 @@ func TestService_Get(t *testing.T) {
 		stats := mocks.NewMockStatistics(ctrl)
 		s := Service{Statistics: stats}
 		t.Run(tt.name, func(t *testing.T) {
-			stats.EXPECT().UpdateStats(tt.expect.arg0,
+			stats.EXPECT().UpdateStats(gomock.Any(),
 				tt.expect.arg1,
 			).Times(tt.expect.times)
 			got, err := s.Get(context.Background(), tt.args.request)
@@ -116,8 +111,7 @@ func TestService_Stats(t *testing.T) {
 	for _, tt := range tests {
 		stats := mocks.NewMockStatistics(mockCtrl)
 		t.Run(tt.name, func(t *testing.T) {
-			withCancel, _ := context.WithCancel(context.Background())
-			stats.EXPECT().GetMostUsed(withCancel).Times(1).Return(tt.ret.v, tt.ret.frequency, tt.ret.err)
+			stats.EXPECT().GetMostUsed(gomock.Any()).Times(1).Return(tt.ret.v, tt.ret.frequency, tt.ret.err)
 			s := Service{Statistics: stats}
 			got, err := s.Stats(context.Background(), &fizzbuzz.FizzBuzzServiceStatsRequest{})
 			if (err != nil) != tt.wantErr {
