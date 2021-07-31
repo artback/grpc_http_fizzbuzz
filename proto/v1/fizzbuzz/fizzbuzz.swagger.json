@@ -1,0 +1,165 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/v1/fizzbuzz/fizzbuzz.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/fizzbuzz": {
+      "post": {
+        "operationId": "FizzBuzzService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/fizzbuzzFizzBuzzServiceGetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/fizzbuzzFizzBuzzServiceGetRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FizzBuzzService"
+        ]
+      }
+    },
+    "/stats": {
+      "get": {
+        "operationId": "FizzBuzzService_Stats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/fizzbuzzFizzBuzzServiceStatsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "FizzBuzzService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "fizzbuzzFizzBuzzServiceGetRequest": {
+      "type": "object",
+      "properties": {
+        "int1": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "int2": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "limit": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "str1": {
+          "type": "string"
+        },
+        "str2": {
+          "type": "string"
+        }
+      }
+    },
+    "fizzbuzzFizzBuzzServiceGetResponse": {
+      "type": "object",
+      "properties": {
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "fizzbuzzFizzBuzzServiceStatsResponse": {
+      "type": "object",
+      "properties": {
+        "int1": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "int2": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "limit": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "str1": {
+          "type": "string"
+        },
+        "str2": {
+          "type": "string"
+        },
+        "requests": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

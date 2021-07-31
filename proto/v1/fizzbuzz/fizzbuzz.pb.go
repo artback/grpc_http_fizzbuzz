@@ -101,8 +101,6 @@ func (x *FizzBuzzServiceGetRequest) GetStr2() string {
 	return ""
 }
 
-// I would have preferred for the rest api to return an json array instead of an
-// object with a property 'words' with the json array
 type FizzBuzzServiceGetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
