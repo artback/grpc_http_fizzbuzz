@@ -36,7 +36,6 @@ func TestService_Get(t *testing.T) {
 				arg1: fizz.BuzzValues{
 					Int1: 2, Int2: 3, Limit: 5, Str1: "fizz", Str2: "buzz",
 				},
-				times: 1,
 			},
 			want: &[]string{
 				"1", "fizz", "buzz", "fizz", "5",
@@ -46,9 +45,6 @@ func TestService_Get(t *testing.T) {
 			name: "error validate",
 			args: args{
 				request: &fizzbuzz.FizzBuzzServiceGetRequest{Int1: 1, Int2: 1, Limit: 5, Str1: "fizz", Str2: "buzz"},
-			},
-			expect: expect{
-				times: 0,
 			},
 			wantErr: true,
 		},
@@ -61,7 +57,7 @@ func TestService_Get(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			stats.EXPECT().UpdateStats(gomock.Any(),
 				tt.expect.arg1,
-			).Times(tt.expect.times)
+			).AnyTimes()
 			got, err := s.Get(context.Background(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Get() error = %v, wantErr %v", err, tt.wantErr)
