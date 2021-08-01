@@ -74,7 +74,7 @@ func Test_getFizzOrBuzz(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want fizzState
+		want int
 	}{
 		{
 			name: "get fizz",
@@ -115,28 +115,24 @@ func Benchmark_getFizzOrBuzz(b *testing.B) {
 	tests := []struct {
 		name string
 		args args
-		want fizzState
 	}{
 		{
 			name: "get fizz",
 			args: args{i: 2, n: BuzzValues{
 				Int1: 2, Int2: 5,
 			}},
-			want: fizz,
 		},
 		{
 			name: "get buzz",
 			args: args{i: 5, n: BuzzValues{
 				Int1: 2, Int2: 5,
 			}},
-			want: buzz,
 		},
 		{
 			name: "get buzz",
 			args: args{i: 6, n: BuzzValues{
 				Int1: 2, Int2: 3,
 			}},
-			want: fizzBuzz,
 		},
 	}
 	for _, tt := range tests {
