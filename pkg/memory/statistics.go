@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+// The time complexity for UpdateStats is  O(1) while for GetMostUsed it is O(log N).
+// I figure the calls to UpdateStats will be plenty more so a good performance for those calls are more important
 type statistics struct {
 	values map[interface{}]uint64
 }
