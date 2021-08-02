@@ -29,14 +29,16 @@ func RunFizz(f BuzzValues) []string {
 	return words
 }
 
+type fizzState uint8
+
 const (
-	fizzBuzz = iota
+	fizzBuzz fizzState = iota
 	fizz
 	buzz
 	number
 )
 
-func getFizzOrBuzz(i uint64, f BuzzValues) int {
+func getFizzOrBuzz(i uint64, f BuzzValues) fizzState {
 	if i%(f.Int1*f.Int2) == 0 {
 		return fizzBuzz
 	} else if i%f.Int1 == 0 {

@@ -74,7 +74,7 @@ func Test_getFizzOrBuzz(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want int
+		want fizzState
 	}{
 		{
 			name: "get fizz",
