@@ -11,7 +11,6 @@ import (
 	"github.com/kuangchanglang/graceful"
 	"log"
 	"net/http"
-	"os"
 )
 
 const (
@@ -28,19 +27,14 @@ func main() {
 	defer cancel()
 	flag.Parse()
 
-	swaggerFile, err := os.ReadFile("proto/v1/fizzbuzz/fizzbuzz.swagger.json")
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	mux := runtime.NewServeMux()
-	err = fizzbuzz.RegisterFizzBuzzServiceHandlerServer(ctx, mux, &fizzbuzzsrv.Service{Statistics: memory.NewMemoryStatistics()})
+	err := fizzbuzz.RegisterFizzBuzzServiceHandlerServer(ctx, mux, &fizzbuzzsrv.Service{Statistics: memory.NewMemoryStatistics()})
 	if err != nil {
 		log.Fatal(err)
 	}
 	r := http.NewServeMux()
 	r.Handle("/", mux)
-	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(swaggerFile)))
+	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(fizzbuzz.Swagger)))
 	server := graceful.NewServer()
 	server.Register(*httpHost, r)
 	log.Println("listening on address " + *httpHost)
