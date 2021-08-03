@@ -5,7 +5,7 @@ import (
 	"flag"
 	"github.com/artback/grpc_http_fizzbuzz/pkg/fizzbuzzsrv"
 	"github.com/artback/grpc_http_fizzbuzz/pkg/memory"
-	"github.com/artback/grpc_http_fizzbuzz/proto/v1/fizzbuzz"
+	"github.com/artback/grpc_http_fizzbuzz/proto/v1/fizzbuzzpb"
 	"github.com/flowchartsman/swaggerui"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/kuangchanglang/graceful"
@@ -28,13 +28,13 @@ func main() {
 	flag.Parse()
 
 	mux := runtime.NewServeMux()
-	err := fizzbuzz.RegisterFizzBuzzServiceHandlerServer(ctx, mux, &fizzbuzzsrv.Service{Statistics: memory.NewMemoryStatistics()})
+	err := fizzbuzzpb.RegisterFizzBuzzServiceHandlerServer(ctx, mux, &fizzbuzzsrv.Server{Statistics: memory.NewMemoryStatistics()})
 	if err != nil {
 		log.Fatal(err)
 	}
 	r := http.NewServeMux()
 	r.Handle("/", mux)
-	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(fizzbuzz.Swagger)))
+	r.Handle("/swagger/", http.StripPrefix("/swagger", swaggerui.Handler(fizzbuzzpb.Swagger)))
 	server := graceful.NewServer()
 	server.Register(*httpHost, r)
 	log.Println("listening on address " + *httpHost)

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "proto/v1/fizzbuzz/fizzbuzz.proto",
+    "title": "proto/v1/fizzbuzzpb/fizzbuzz.proto",
     "version": "version not set"
   },
   "consumes": [
@@ -18,7 +18,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/fizzbuzzFizzBuzzServiceGetResponse"
+              "$ref": "#/definitions/fizzbuzzpbFizzBuzzServiceGetResponse"
             }
           },
           "default": {
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/fizzbuzzFizzBuzzServiceGetRequest"
+              "$ref": "#/definitions/fizzbuzzpbFizzBuzzServiceGetRequest"
             }
           }
         ],
@@ -50,7 +50,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/fizzbuzzFizzBuzzServiceStatsResponse"
+              "$ref": "#/definitions/fizzbuzzpbFizzBuzzServiceStatsResponse"
             }
           },
           "default": {
@@ -67,7 +67,7 @@
     }
   },
   "definitions": {
-    "fizzbuzzFizzBuzzServiceGetRequest": {
+    "fizzbuzzpbFizzBuzzServiceGetRequest": {
       "type": "object",
       "properties": {
         "int1": {
@@ -90,7 +90,7 @@
         }
       }
     },
-    "fizzbuzzFizzBuzzServiceGetResponse": {
+    "fizzbuzzpbFizzBuzzServiceGetResponse": {
       "type": "object",
       "properties": {
         "words": {
@@ -101,7 +101,7 @@
         }
       }
     },
-    "fizzbuzzFizzBuzzServiceStatsResponse": {
+    "fizzbuzzpbFizzBuzzServiceStatsResponse": {
       "type": "object",
       "properties": {
         "int1": {

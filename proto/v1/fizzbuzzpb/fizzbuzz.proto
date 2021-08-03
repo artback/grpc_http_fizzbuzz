@@ -1,6 +1,6 @@
 syntax = "proto3";
-package proto.v1.fizzbuzz;
-option go_package = "proto/v1/fizzbuzz";
+package proto.v1.fizzbuzzpb;
+option go_package = "proto/v1/fizzbuzzpb";
 import "google/api/annotations.proto";
 
 service FizzBuzzService {

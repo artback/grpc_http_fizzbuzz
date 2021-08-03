@@ -1,4 +1,4 @@
-package fizzbuzz
+package fizzbuzzpb
 
 import _ "embed"
 
