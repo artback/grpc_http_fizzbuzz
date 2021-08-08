@@ -8,6 +8,7 @@ import (
 	"github.com/artback/grpc_http_fizzbuzz/proto/v1/fizzbuzzpb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"time"
 )
 
 type Server struct {
@@ -16,7 +17,7 @@ type Server struct {
 }
 
 func (s Server) Get(ctx context.Context, req *fizzbuzzpb.GetRequest) (*fizzbuzzpb.GetResponse, error) {
-	ctx, cancel := context.WithCancel(ctx)
+	ctx, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 	if err := req.Validate(); err != nil {
 		return nil, status.Error(codes.InvalidArgument, fmt.Errorf("Controller.Get Validation %w", err).Error())
@@ -28,7 +29,7 @@ func (s Server) Get(ctx context.Context, req *fizzbuzzpb.GetRequest) (*fizzbuzzp
 }
 
 func (s Server) Stats(ctx context.Context, _ *fizzbuzzpb.StatsRequest) (*fizzbuzzpb.StatsResponse, error) {
-	ctx, cancel := context.WithCancel(ctx)
+	ctx, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 	most, frequency, err := s.GetMostUsed(ctx)
 	if err != nil {
