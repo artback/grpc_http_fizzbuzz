@@ -6,7 +6,7 @@ import (
 	_ "google.golang.org/protobuf/types/known/emptypb"
 )
 
-func (this *FizzBuzzServiceGetRequest) Validate() error {
+func (this *GetRequest) Validate() error {
 	if this.Int1 <= 0 {
 		return fmt.Errorf("validation error: FizzBuzzServiceGetRequest.Int1 must be greater than 0")
 	}
@@ -24,12 +24,12 @@ func (this *FizzBuzzServiceGetRequest) Validate() error {
 	}
 	return nil
 }
-func (this *FizzBuzzServiceGetResponse) Validate() error {
+func (this *GetResponse) Validate() error {
 	return nil
 }
-func (this *FizzBuzzServiceStatsResponse) Validate() error {
+func (this *StatsResponse) Validate() error {
 	return nil
 }
-func (this *FizzBuzzServiceStatsRequest) Validate() error {
+func (this *StatsRequest) Validate() error {
 	return nil
 }

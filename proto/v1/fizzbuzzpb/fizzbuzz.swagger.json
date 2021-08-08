@@ -18,7 +18,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/fizzbuzzpbFizzBuzzServiceGetResponse"
+              "$ref": "#/definitions/fizzbuzzpbGetResponse"
             }
           },
           "default": {
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/fizzbuzzpbFizzBuzzServiceGetRequest"
+              "$ref": "#/definitions/fizzbuzzpbGetRequest"
             }
           }
         ],
@@ -50,7 +50,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/fizzbuzzpbFizzBuzzServiceStatsResponse"
+              "$ref": "#/definitions/fizzbuzzpbStatsResponse"
             }
           },
           "default": {
@@ -67,7 +67,7 @@
     }
   },
   "definitions": {
-    "fizzbuzzpbFizzBuzzServiceGetRequest": {
+    "fizzbuzzpbGetRequest": {
       "type": "object",
       "properties": {
         "int1": {
@@ -90,7 +90,7 @@
         }
       }
     },
-    "fizzbuzzpbFizzBuzzServiceGetResponse": {
+    "fizzbuzzpbGetResponse": {
       "type": "object",
       "properties": {
         "words": {
@@ -101,7 +101,7 @@
         }
       }
     },
-    "fizzbuzzpbFizzBuzzServiceStatsResponse": {
+    "fizzbuzzpbStatsResponse": {
       "type": "object",
       "properties": {
         "int1": {

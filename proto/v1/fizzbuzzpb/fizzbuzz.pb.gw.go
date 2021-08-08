@@ -34,7 +34,7 @@ var _ = descriptor.ForMessage
 var _ = metadata.Join
 
 func request_FizzBuzzService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client FizzBuzzServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FizzBuzzServiceGetRequest
+	var protoReq GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -51,7 +51,7 @@ func request_FizzBuzzService_Get_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_FizzBuzzService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server FizzBuzzServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FizzBuzzServiceGetRequest
+	var protoReq GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -68,7 +68,7 @@ func local_request_FizzBuzzService_Get_0(ctx context.Context, marshaler runtime.
 }
 
 func request_FizzBuzzService_Stats_0(ctx context.Context, marshaler runtime.Marshaler, client FizzBuzzServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FizzBuzzServiceStatsRequest
+	var protoReq StatsRequest
 	var metadata runtime.ServerMetadata
 
 	msg, err := client.Stats(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -77,7 +77,7 @@ func request_FizzBuzzService_Stats_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_FizzBuzzService_Stats_0(ctx context.Context, marshaler runtime.Marshaler, server FizzBuzzServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FizzBuzzServiceStatsRequest
+	var protoReq StatsRequest
 	var metadata runtime.ServerMetadata
 
 	msg, err := server.Stats(ctx, &protoReq)

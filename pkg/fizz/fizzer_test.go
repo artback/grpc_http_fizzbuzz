@@ -22,7 +22,7 @@ func TestRunFizz(t *testing.T) {
 			name: "fizzbuzzpb 2,3,10",
 			args: BuzzValues{Int1: 2, Int2: 3, Limit: 10, Str1: "fizz", Str2: "buzz"},
 			want: []string{
-				"1", "fizz", "buzz", "fizz", "5", "fizzbuzzpb", "7", "fizz", "buzz", "fizz",
+				"1", "fizz", "buzz", "fizz", "5", "fizzbuzz", "7", "fizz", "buzz", "fizz",
 			},
 		},
 	}

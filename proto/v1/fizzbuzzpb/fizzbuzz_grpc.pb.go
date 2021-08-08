@@ -18,8 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FizzBuzzServiceClient interface {
-	Get(ctx context.Context, in *FizzBuzzServiceGetRequest, opts ...grpc.CallOption) (*FizzBuzzServiceGetResponse, error)
-	Stats(ctx context.Context, in *FizzBuzzServiceStatsRequest, opts ...grpc.CallOption) (*FizzBuzzServiceStatsResponse, error)
+	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
+	Stats(ctx context.Context, in *StatsRequest, opts ...grpc.CallOption) (*StatsResponse, error)
 }
 
 type fizzBuzzServiceClient struct {
@@ -30,8 +30,8 @@ func NewFizzBuzzServiceClient(cc grpc.ClientConnInterface) FizzBuzzServiceClient
 	return &fizzBuzzServiceClient{cc}
 }
 
-func (c *fizzBuzzServiceClient) Get(ctx context.Context, in *FizzBuzzServiceGetRequest, opts ...grpc.CallOption) (*FizzBuzzServiceGetResponse, error) {
-	out := new(FizzBuzzServiceGetResponse)
+func (c *fizzBuzzServiceClient) Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error) {
+	out := new(GetResponse)
 	err := c.cc.Invoke(ctx, "/proto.v1.fizzbuzzpb.FizzBuzzService/Get", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -39,8 +39,8 @@ func (c *fizzBuzzServiceClient) Get(ctx context.Context, in *FizzBuzzServiceGetR
 	return out, nil
 }
 
-func (c *fizzBuzzServiceClient) Stats(ctx context.Context, in *FizzBuzzServiceStatsRequest, opts ...grpc.CallOption) (*FizzBuzzServiceStatsResponse, error) {
-	out := new(FizzBuzzServiceStatsResponse)
+func (c *fizzBuzzServiceClient) Stats(ctx context.Context, in *StatsRequest, opts ...grpc.CallOption) (*StatsResponse, error) {
+	out := new(StatsResponse)
 	err := c.cc.Invoke(ctx, "/proto.v1.fizzbuzzpb.FizzBuzzService/Stats", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -52,8 +52,8 @@ func (c *fizzBuzzServiceClient) Stats(ctx context.Context, in *FizzBuzzServiceSt
 // All implementations must embed UnimplementedFizzBuzzServiceServer
 // for forward compatibility
 type FizzBuzzServiceServer interface {
-	Get(context.Context, *FizzBuzzServiceGetRequest) (*FizzBuzzServiceGetResponse, error)
-	Stats(context.Context, *FizzBuzzServiceStatsRequest) (*FizzBuzzServiceStatsResponse, error)
+	Get(context.Context, *GetRequest) (*GetResponse, error)
+	Stats(context.Context, *StatsRequest) (*StatsResponse, error)
 	mustEmbedUnimplementedFizzBuzzServiceServer()
 }
 
@@ -61,10 +61,10 @@ type FizzBuzzServiceServer interface {
 type UnimplementedFizzBuzzServiceServer struct {
 }
 
-func (UnimplementedFizzBuzzServiceServer) Get(context.Context, *FizzBuzzServiceGetRequest) (*FizzBuzzServiceGetResponse, error) {
+func (UnimplementedFizzBuzzServiceServer) Get(context.Context, *GetRequest) (*GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedFizzBuzzServiceServer) Stats(context.Context, *FizzBuzzServiceStatsRequest) (*FizzBuzzServiceStatsResponse, error) {
+func (UnimplementedFizzBuzzServiceServer) Stats(context.Context, *StatsRequest) (*StatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Stats not implemented")
 }
 func (UnimplementedFizzBuzzServiceServer) mustEmbedUnimplementedFizzBuzzServiceServer() {}
@@ -81,7 +81,7 @@ func RegisterFizzBuzzServiceServer(s grpc.ServiceRegistrar, srv FizzBuzzServiceS
 }
 
 func _FizzBuzzService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FizzBuzzServiceGetRequest)
+	in := new(GetRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -93,13 +93,13 @@ func _FizzBuzzService_Get_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: "/proto.v1.fizzbuzzpb.FizzBuzzService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FizzBuzzServiceServer).Get(ctx, req.(*FizzBuzzServiceGetRequest))
+		return srv.(FizzBuzzServiceServer).Get(ctx, req.(*GetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _FizzBuzzService_Stats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FizzBuzzServiceStatsRequest)
+	in := new(StatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -111,7 +111,7 @@ func _FizzBuzzService_Stats_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: "/proto.v1.fizzbuzzpb.FizzBuzzService/Stats",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FizzBuzzServiceServer).Stats(ctx, req.(*FizzBuzzServiceStatsRequest))
+		return srv.(FizzBuzzServiceServer).Stats(ctx, req.(*StatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

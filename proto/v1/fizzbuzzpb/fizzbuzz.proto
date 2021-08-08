@@ -4,13 +4,13 @@ option go_package = "proto/v1/fizzbuzzpb";
 import "google/api/annotations.proto";
 
 service FizzBuzzService {
-  rpc Get(FizzBuzzServiceGetRequest) returns (FizzBuzzServiceGetResponse) {
+  rpc Get(GetRequest) returns (GetResponse) {
     option (google.api.http) = {
       post: "/fizzbuzz"
       body: "*"
     };
   }
-  rpc Stats(FizzBuzzServiceStatsRequest) returns (FizzBuzzServiceStatsResponse) {
+  rpc Stats(StatsRequest) returns (StatsResponse) {
     option (google.api.http) = {
       get: "/stats"
     };
@@ -18,7 +18,7 @@ service FizzBuzzService {
 }
 
 
-message FizzBuzzServiceGetRequest {
+message GetRequest {
   uint64 int1 = 1;
   uint64 int2 = 2;
   uint64 limit = 3;
@@ -26,11 +26,11 @@ message FizzBuzzServiceGetRequest {
   string str2 = 5;
 }
 
-message FizzBuzzServiceGetResponse {
+message GetResponse {
   repeated string words = 6;
 }
 
-message FizzBuzzServiceStatsResponse {
+message StatsResponse {
   uint64 int1 = 1;
   uint64 int2 = 2;
   uint64 limit = 3;
@@ -41,5 +41,5 @@ message FizzBuzzServiceStatsResponse {
 
 // Choosing between google.protobuf.Empty or an message without fields,
 //The empty message has the advantage of being easier to extend without breakage in the future.
-message FizzBuzzServiceStatsRequest {
+message StatsRequest {
 }
