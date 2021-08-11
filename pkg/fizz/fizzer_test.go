@@ -12,14 +12,14 @@ func TestRunFizz(t *testing.T) {
 		want []string
 	}{
 		{
-			name: "fizzbuzzpb 2,3,5",
+			name: "fizzbuzz 2,3,5",
 			args: BuzzValues{Int1: 2, Int2: 3, Limit: 5, Str1: "fizz", Str2: "buzz"},
 			want: []string{
 				"1", "fizz", "buzz", "fizz", "5",
 			},
 		},
 		{
-			name: "fizzbuzzpb 2,3,10",
+			name: "fizzbuzz 2,3,10",
 			args: BuzzValues{Int1: 2, Int2: 3, Limit: 10, Str1: "fizz", Str2: "buzz"},
 			want: []string{
 				"1", "fizz", "buzz", "fizz", "5", "fizzbuzz", "7", "fizz", "buzz", "fizz",
@@ -43,17 +43,17 @@ func BenchmarkRunFizz(b *testing.B) {
 		want []string
 	}{
 		{
-			name: "fizzbuzzpb 2,3,5",
+			name: "fizzbuzz 2,3,5",
 			args: BuzzValues{Int1: 2, Int2: 3, Limit: 5, Str1: "fizz", Str2: "buzz"},
 			want: []string{
 				"1", "fizz", "buzz", "fizz", "5",
 			},
 		},
 		{
-			name: "fizzbuzzpb 2,3,10",
+			name: "fizzbuzz 2,3,10",
 			args: BuzzValues{Int1: 2, Int2: 3, Limit: 10, Str1: "fizz", Str2: "buzz"},
 			want: []string{
-				"1", "fizz", "buzz", "fizz", "5", "fizzbuzzpb", "7", "fizz", "buzz", "fizz",
+				"1", "fizz", "buzz", "fizz", "5", "fizzbuzz", "7", "fizz", "buzz", "fizz",
 			},
 		},
 	}
